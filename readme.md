@@ -1,33 +1,36 @@
-
 chat app with python
 
-**First checkpoint:**
--implemented basic connection between client and server using socket
--sending test text from client to server and back
--reading Ip addresses of connected client
+**second checkpoint:**
+-send text through the opened connections
+-handle multiple connections
+-log info into server
 
 **Get Started:**
 -run py server.py
 -run py client.py
 
 **Output:
-Client:**
-PS D:\Users\sandu\Desktop\Python\chat> py .\client.py
-`new msg len: b'22        '<br />
-full message length: 22 <br />
-16 <br />
-full message length: 22<br />
-32 <br />
-full msg recvd <br />
-Welcome to the server!`
+Client:**<br />
+$ py client.py<br />
+Choose an username: test2<br />
+test2 > hi there<br />
+test2 > this is a message from test 2<br />
+test1 > and this one is from test 1<br />
+<br />
+$ py client.py<br />
+Choose an username: test1<br />
+test1 ><br />
+alex > fad<br />
+test2 > hi there<br />
+test2 > this is a message from test 2<br />
+test1 > and this one is from test 1<br />
+test1 ><br />
+
 **Server:**
-PS D:\Users\sandu\Desktop\Python\chat> py .\server.py
-`Connection from ('172.21.0.1', 53018) has been established.
-30        The time is 1638065204.1847436 <br/>
-29        The time is 1638065207.188988 <br />
-30        The time is 1638065210.1968362 <br />
-30        The time is 1638065213.2088094 <br />
-30        The time is 1638065216.2147722 <br />
-30        The time is 1638065219.2204318 <br />
-30        The time is 1638065222.2227266 <br />
-30        The time is 1638065225.2287023`
+Accepted new connection from 127.0.0.1:60982, username: test1<br />
+Accepted new connection from 127.0.0.1:61015, username: test2<br />
+Received message from test2: hi there<br />
+Received message from test2: this is a message from test 2<br />
+Received message from test1: and this one is from test 1<br />
+Closed connection from: test1<br />
+Closed connection from: test2<br />
