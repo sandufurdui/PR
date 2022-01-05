@@ -1,15 +1,15 @@
 chat app with python
 
-**second checkpoint:**
--send text through the opened connections
--handle multiple connections
--log info into server
+**third checkpoint:**<br />
+-implemented ftp<br />
+-added ftp_server.py<br />
+-now the server supports multiple client connections<br />
 
-**Get Started:**
--run py server.py
--run py client.py
+**Get Started:**<br />
+-run py server.py<br />
+-run py client.py<br />
 
-**Output:
+**Output:<br />
 Client:**<br />
 $ py client.py<br />
 Choose an username: test2<br />
