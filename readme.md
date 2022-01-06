@@ -13,7 +13,7 @@ Client:**<br />
 $ py client.py<br />
 Username: alex<br />
 alex > !mail<br />
-What is you password: test321.<br />
+What is you password:<br />
 Enter receiver email: sandu4561@gmail.com<br />
 Enter the subject: Testing SMTP protocol<br />
 Enter email body:This is a test lol<br />
