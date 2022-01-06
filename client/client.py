@@ -5,7 +5,7 @@ import errno
 import sys
 import time
 import email, smtplib, ssl
-
+import getpass
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
@@ -67,7 +67,7 @@ while True:
         ftps.quit()
     if message == '!mail':
         sender_email = 'testfsgd@gmail.com'
-        password = input('What is you password: ')
+        password = getpass.getpass('What is you password: ')
         context = ssl.create_default_context()
         receiver_email = input('Enter receiver email: ')
         subject = input('Enter the subject: ')
@@ -125,7 +125,7 @@ while True:
         # force UTF-8 encoding
         ftps.encoding = "utf-8"
         with open(filename, "rb") as file:
-            ftps.storbinary(f"STOR test", file)
+            ftps.storbinary(f"STOR {filename}", file)
         ftps.quit()
     if message == "!download":
         # command(message)
