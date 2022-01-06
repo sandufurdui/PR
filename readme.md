@@ -1,9 +1,9 @@
 chat app with python
 
-**third checkpoint:**<br />
--implemented ftp<br />
+**fourth checkpoint:**<br />
+-implemented smtp<br />
 -added ftp_server.py<br />
--now the server supports multiple client connections<br />
+-not client can send mails by using '!mail' command when chating<br />
 
 **Get Started:**<br />
 -run py server.py<br />
@@ -12,19 +12,19 @@ chat app with python
 **Output:<br />
 Client:**<br />
 $ py client.py<br />
-Choose an username: test2<br />
-test2 > hi there<br />
-test2 > this is a message from test 2<br />
-test1 > and this one is from test 1<br />
+Username: alex<br />
+alex > !mail<br />
+What is you password: test321.<br />
+Enter receiver email: sandu4561@gmail.com<br />
+Enter the subject: Testing SMTP protocol<br />
+Enter email body:This is a test lol<br />
+successfully loged in<br />
+now sending the mail<br />
+mail successfully sent<br />
+exiting...<br />
+alex > <br />
 <br />
-$ py client.py<br />
-Choose an username: test1<br />
-test1 ><br />
-alex > fad<br />
-test2 > hi there<br />
-test2 > this is a message from test 2<br />
-test1 > and this one is from test 1<br />
-test1 ><br />
+
 
 **Server:**
 Accepted new connection from 127.0.0.1:60982, username: test1<br />
