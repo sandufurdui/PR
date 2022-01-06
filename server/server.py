@@ -83,12 +83,12 @@ while True:
 
                 continue
 
-            # Get user by notified socket, so we will know who sent the message
+
             user = clients[notified_socket]
 
             print(f'Received message from {user["data"].decode("utf-8")}: {message["data"].decode("utf-8")}')
 
-            # Iterate over connected clients and broadcast message
+            # Iterate over connected clients
             for client_socket in clients:
 
                 if client_socket != notified_socket:
