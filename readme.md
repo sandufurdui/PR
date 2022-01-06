@@ -2,8 +2,7 @@ chat app with python
 
 **fourth checkpoint:**<br />
 -implemented smtp<br />
--added ftp_server.py<br />
--not client can send mails by using '!mail' command when chating<br />
+-added attachment to email(ftp comunicates with smtp in order to attach the file directly from the ftp_server)<br />
 
 **Get Started:**<br />
 -run py server.py<br />

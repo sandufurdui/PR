@@ -1,13 +1,19 @@
+import os
 import socket
 import ftplib
 import errno
 import sys
-import smtplib, ssl
 import time
+import email, smtplib, ssl
+
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 smtp_server = 'smtp.gmail.com'
 smtp_port = 465
-sender = 'testfsgd@gmail.com'
+# sender = 'testfsgd@gmail.com'
 
 HEADER_LENGTH = 10
 
@@ -52,7 +58,7 @@ while True:
     # Wait for user to input a message
     message = input(f'{my_username} > ')
 
-    if message == "!cat":
+    if message == "!cat1111":
         command(message)
         ftps = ftplib.FTP()
         ftps.connect(host, port)
@@ -60,23 +66,58 @@ while True:
 
         ftps.quit()
     if message == '!mail':
+        sender_email = 'testfsgd@gmail.com'
         password = input('What is you password: ')
         context = ssl.create_default_context()
-        receiver = input('Enter receiver email: ')
+        receiver_email = input('Enter receiver email: ')
         subject = input('Enter the subject: ')
-        body = (input('Enter email body:'))
-        # body.IsBodyHtml = True
-        message = 'Subject: ' + subject + '\n' + body
-        with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
-            server.login(sender, password)
+        body = (input('Enter email body(you can use HTML tagzzzzz):'))
+        ftps = ftplib.FTP()
+        ftps.connect(host, port)
+        ftps.login(usr, pwd)
+        file_name = input("enter file name to download: ")
+        with open(file_name, "wb") as file:
+            ftps.retrbinary(f"RETR {file_name}", file.write, 1024)
+
+        ftps.quit()
+        message1 = MIMEMultipart()
+        message1["From"] = sender_email
+        message1["To"] = receiver_email
+        message1["Subject"] = subject
+        message1["Bcc"] = receiver_email
+
+        # Add body to email
+        message1.attach(MIMEText(body, "html"))
+
+        filename = file_name
+        with open(filename, "rb") as attachment:
+            part = MIMEBase("application", "octet-stream")
+            part.set_payload(attachment.read())
+
+        encoders.encode_base64(part)
+
+        part.add_header(
+            "Content-Disposition",
+            f"attachment; filename= {filename}",
+        )
+
+        message1.attach(part)
+        text = message1.as_string()
+
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+            server.login(sender_email, password)
             print('successfully loged in')
             print('now sending the mail')
-            server.sendmail(sender, receiver, message)
+            server.sendmail(sender_email, receiver_email, text)
+            os.remove(file_name)
             print('mail successfully sent')
             print('exiting...')
             time.sleep(1)
+
+
     if message == "!upload":
-        command(message)
+        # command(message)
         ftps = ftplib.FTP()
         ftps.connect(host, port)
         ftps.login(usr, pwd)
@@ -87,7 +128,7 @@ while True:
             ftps.storbinary(f"STOR test", file)
         ftps.quit()
     if message == "!download":
-        command(message)
+        # command(message)
         ftps = ftplib.FTP()
         ftps.connect(host, port)
         ftps.login(usr, pwd)
@@ -96,7 +137,7 @@ while True:
             ftps.retrbinary(f"RETR {filename}", file.write, 1024)
         ftps.quit()
     if message == "!delete":
-        command(message)
+        # command(message)
         ftps = ftplib.FTP()
         ftps.connect(host, port)
         ftps.login(usr, pwd)
@@ -106,7 +147,7 @@ while True:
         ftps.delete(filename)
         ftps.quit()
     if message == "!ls":
-        command(message)
+        # command(message)
         ftps = ftplib.FTP()
         ftps.connect(host, port)
         ftps.login(usr, pwd)

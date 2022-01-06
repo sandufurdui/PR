@@ -5,11 +5,11 @@ import socket
 import time
 import ftplib
 
-IP = '127.0.0.1'
-PORT = 4002
-ADDR = (IP, PORT)
-SIZE = 1024
-FORMAT = "utf-8"
+# IP = '127.0.0.1'
+# PORT = 4002
+# ADDR = (IP, PORT)
+# SIZE = 1024
+# FORMAT = "utf-8"
 
 # print("[STARTING] Server is starting.")
 # server1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -36,18 +36,18 @@ FORMAT = "utf-8"
 
 
 
-def ftp_server():
-    authorizer = DummyAuthorizer()
-    print('1')
-    authorizer.add_user("user", "12345", ".", perm="elradfmw")
-    print('2')
-    handler = FTPHandler
-    print('3')
-    handler.authorizer = authorizer
-    print('4')
-    server = FTPServer(("127.0.0.1", 4001), handler)
-    print('5')
-    server.serve_forever()
+
+authorizer = DummyAuthorizer()
+print('1')
+authorizer.add_user("user", "12345", ".", perm="elradfmw")
+print('2')
+handler = FTPHandler
+print('3')
+handler.authorizer = authorizer
+print('4')
+server = FTPServer(("127.0.0.1", 4001), handler)
+print('5')
+server.serve_forever()
 
 
 # while True:
@@ -56,5 +56,4 @@ def ftp_server():
 #     if command == '!cat':
 #         print('if command')
 #         main()
-ftp_server()
 
