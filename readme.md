@@ -7,6 +7,7 @@ chat app with python
 **Get Started:**<br />
 -run py server.py<br />
 -run py client.py<br />
+-run py ftp_server.py<br />
 
 **Output:<br />
 Client:**<br />
